@@ -1,77 +1,9 @@
-import { authHeader } from '../helpers';
-
 export const userService = {
-    buyBtc,
-    sellBtc,
-    login,
-    logout,
-    register,
-    getAll,
-    getById,
-    update,
-    delete: _delete
+    send
 };
 
-function login(username, hashedPassword) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, hashedPassword })
-    };
 
-    return Promise.all([
-        fetch(`/users/authenticate`, requestOptions),
-        fetch(`/rates`)
-    ])
-        .then(data => Promise.all([handleResponse(data[0]), handleResponse(data[1])]))
-        .then(response => {
-            const user = response[0].text;
-            const rates = response[1].text;
-            localStorage.setItem('rates', JSON.stringify(rates));
-            localStorage.setItem('user', JSON.stringify(user));
-            return { user, rates };
-        });
-}
-
-function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
-}
-
-function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(`/users`, requestOptions).then(handleResponse);
-}
-
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(`/users/${id}`, requestOptions).then(handleResponse);
-}
-
-function buyBtc(pair, amount, id) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({id, amount, pair})
-    }
-    return fetch(`/buyBtc`, requestOptions).then(handleResponse)
-        .then(response => {
-            const { user, rates } = response.text;
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('rates', JSON.stringify(rates));
-            return { user, rates};
-        });
-}
-
-function sellBtc(pair, amount, id) {
+function send(pair, amount, id) {
     const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -83,36 +15,7 @@ function sellBtc(pair, amount, id) {
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('rates', JSON.stringify(rates));
             return { user, rates};
-        });}
-
-function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
-
-    return fetch(`/users`, requestOptions).then(handleResponse);
-}
-
-function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
-
-    return fetch(`/users/${user.id}`, requestOptions).then(handleResponse);;
-}
-
-// prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
-
-    return fetch(`/users/${id}`, requestOptions).then(handleResponse);
+        });
 }
 
 function handleResponse(response) {
