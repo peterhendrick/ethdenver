@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal';
-import { TradeModal } from '../_components/Modals/TradeModal';
+import { TradeModal } from '../components/Modals/TradeModal';
 
 const MODAL_TYPES = {
   'trade': TradeModal

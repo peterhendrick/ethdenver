@@ -1,6 +1,6 @@
 import {
     userConstants
-} from '../_constants';
+} from '../constants';
 
 export function users(state = {}, action) {
     switch (action.type) {

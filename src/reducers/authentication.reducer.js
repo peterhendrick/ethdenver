@@ -1,6 +1,6 @@
 import {
     userConstants
-} from '../_constants';
+} from '../constants';
 
 let user = JSON.parse(localStorage.getItem('user'));
 let rates = JSON.parse(localStorage.getItem('rates'))

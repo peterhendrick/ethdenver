@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ModalRoot from '../App/ModalRoot';
-import { showModal, hideModal } from '../_actions/modal.actions';
+import { showModal, hideModal } from '../actions/modal.actions';
 
-import { userActions } from '../_actions';
+import { userActions } from '../actions';
 
 class HomePage extends React.Component {
     constructor(props) {

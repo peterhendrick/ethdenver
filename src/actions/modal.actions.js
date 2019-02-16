@@ -1,4 +1,4 @@
-import { modalActions } from '../_constants';
+import { modalActions } from '../constants';
 
 export const showModal = ({ modalProps, modalType }) => dispatch => {
     dispatch({
