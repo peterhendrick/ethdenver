@@ -24,7 +24,7 @@ class HomePage extends React.Component {
     send(event) {
         event.preventDefault();
         this.setState({ submitted: true });
-        this.props.dispatch(userActions.send(this.state.address, this.state.cert));
+        this.props.dispatch(userActions.send(this.state.address, this.state.certificate));
     }
 
     render() {

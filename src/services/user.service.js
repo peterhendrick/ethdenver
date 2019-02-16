@@ -3,19 +3,24 @@ export const userService = {
 };
 
 
-function send(pair, amount, id) {
+function send(address, cert) {
     const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({pair, amount, id})
+        body: JSON.stringify({address, cert})
     }
-    return fetch(`/sellBtc`, requestOptions).then(handleResponse)
-        .then(response => {
-            const { user, rates } = response.text;
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('rates', JSON.stringify(rates));
-            return { user, rates};
-        });
+    return new Promise((resolve, reject) => {
+        if (address && cert ) return resolve({address, cert});
+        return reject({ message: 'Well fuck' });
+    });
+    // return fetch({}).then(handleResponse);
+    // return fetch(`/sellBtc`, requestOptions).then(handleResponse)
+    //     .then(response => {
+    //         const { user, rates } = response.text;
+    //         localStorage.setItem('user', JSON.stringify(user));
+    //         localStorage.setItem('rates', JSON.stringify(rates));
+    //         return { user, rates};
+    //     });
 }
 
 function handleResponse(response) {

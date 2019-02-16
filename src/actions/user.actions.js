@@ -14,18 +14,18 @@ function send(address, cert) {
         dispatch(request(address, cert));
 
         userService.send(address, cert)
-            .then(({ user, rates}) => {
-                dispatch(success(user, rates));
-                dispatch(alertActions.success(`Trade successful, you sold ${amount} BTC for ${pair}.`));
+            .then((response) => {
+                dispatch(success(response));
+                dispatch(alertActions.success(`Success`));
             }).catch(error => {
-                dispatch(failure(id, error.toString()));
-                dispatch(alertActions.error(error));
+                dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.message));
             });
     };
 
     function request(id) { return { type: userConstants.SEND_REQUEST, id } }
     function success(address, cert) { return { type: userConstants.SEND_SUCCESS, address, cert } }
-    function failure(id, error) { return { type: userConstants.SEND_FAILURE, id, error } }
+    function failure(message) { return { type: userConstants.SEND_FAILURE, message } }
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
