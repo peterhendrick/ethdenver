@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+// import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../actions';
@@ -31,6 +31,10 @@ class HomePage extends React.Component {
         const { address, certificate, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
+                <div className="d-flex justify-content-md-center">
+                    <img style={{width: 300, height: 300}} src={'https://www.ethdenver.com/wp-content/themes/understrap/img/bufficorn_magic_geometri1.jpg'} alt="boohoo" className="img-responsive"/>
+                </div>
+
                 <div className={'form-group' + (submitted && !address ? ' has-error' : '')}>
                     <label htmlFor="address">Student Ethereum Address</label>
                     <input type="text"

@@ -1,8 +1,9 @@
-import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
-import * as express from 'express';
-import * as path from 'path';
-import { api } from './api';
+const bodyParser = require('body-parser'),
+    cors = require('cors'),
+    express = require('express'),
+    path = require('path');
+
+const api = require('./api');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -19,7 +20,7 @@ app.use(
 app.post('/mint', api.receiveRequest);
 
 // Handles any requests that don't match the ones above
-app.get('*', (req: express.Request, res: express.Response) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 

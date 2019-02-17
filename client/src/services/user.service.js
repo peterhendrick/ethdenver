@@ -2,11 +2,11 @@ export const userService = {
     send
 };
 
-function send(address, cert) {
+function send(address, certificate) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address, cert })
+        body: JSON.stringify({ address, certificate })
     }
     // return new Promise((resolve, reject) => {
     //     if (address && cert ) return resolve({address, cert});
