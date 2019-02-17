@@ -49,7 +49,7 @@ class HomePage extends React.Component {
                 </tr>
                 <tr>
                 <td>
-                    <div className="col-md-6 col-md-offset-3">
+                    <div className="col-md-offset-2">
                         <div className={'form-group' + (submitted && !tokenReceiver ? ' has-error' : '')}>
                             <label htmlFor="tokenReceiver">Address To Mint For</label>
                             <input type="text"
@@ -98,7 +98,7 @@ class HomePage extends React.Component {
                     </div>
                 </td>
                 <td>
-                    <div className="col-md-6 col-md-offset-3">
+                    <div className="col-md-offset-2">
                         <div className={'form-group' + (submitted && !address ? ' has-error' : '')}>
                             <label htmlFor="lookUpID">Token ID to LookUp</label>
                             <input type="text"

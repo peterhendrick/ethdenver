@@ -3,7 +3,6 @@ const bodyParser = require('body-parser'),
     express = require('express'),
     path = require('path');
 
-const api = require('./api');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -16,9 +15,6 @@ app.use(
         extended: true
     })
 );
-
-app.post('/mint', api.receiveRequest);
-
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
