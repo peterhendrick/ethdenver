@@ -5,7 +5,8 @@ import { alertActions } from './';
 export const web3Actions = {
     balanceOf,
     ownerOf,
-    tokenURI
+    tokenURI,
+    mint
 };
 
 function balanceOf(address) {
