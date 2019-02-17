@@ -5,12 +5,6 @@ import { Provider } from 'react-redux';
 import { store } from './helpers';
 import { App } from './App';
 window.addEventListener('load', function() {
-
-    // web3Util.init();
-
-
-    // // Now you can start your app & access web3 freely:
-    // startApp()
     render(
         <Provider store={store}>
             {/* <Web3Provider store={store}> */}

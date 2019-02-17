@@ -1,5 +1,10 @@
 import Web3 from 'web3';
 let web3js;
+const {
+    contractAddress,
+    httpProvider,
+    ABI
+} = require('./ethBackpackContractConfig');
 
 if (typeof window.web3 !== 'undefined') {
     // Use Mist/MetaMask's provider
@@ -8,19 +13,12 @@ if (typeof window.web3 !== 'undefined') {
 } else {
     console.log('No web3? You should consider trying MetaMask!')
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    web3js = new Web3(new Web3.providers.HttpProvider(httpProvider));
 }
 async function getAccounts() {
     const account = await web3js.eth.getAccounts();
     return account[0];
 }
-
-
-const {
-    contractAddress,
-    httpProvider,
-    ABI
-} = require('./ethBackpackContractConfig');
 
 const contract = new web3js.eth.Contract(
     ABI,

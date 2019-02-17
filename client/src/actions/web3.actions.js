@@ -43,7 +43,7 @@ function ownerOf(tokenId) {
     };
 
     function request(tokenId) { return { type: web3Constants.OWNEROF_REQUEST, tokenId } }
-    function success(tokenId) { return { type: web3Constants.OWNEROF_SUCCESS, tokenId } }
+    function success(address) { return { type: web3Constants.OWNEROF_SUCCESS, address } }
     function failure(message) { return { type: web3Constants.OWNEROF_FAILURE, message } }
 }
 
@@ -62,7 +62,7 @@ function tokenURI(tokenId) {
     };
 
     function request(tokenId) { return { type: web3Constants.TOKENURI_REQUEST, tokenId } }
-    function success(tokenId) { return { type: web3Constants.TOKENURI_SUCCESS, tokenId } }
+    function success(certificate) { return { type: web3Constants.TOKENURI_SUCCESS, certificate } }
     function failure(message) { return { type: web3Constants.TOKENURI_FAILURE, message } }
 }
 

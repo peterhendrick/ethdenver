@@ -2,14 +2,16 @@ import {
     web3Constants
 } from '../constants';
 
-export function users(state = {}, action) {
+export function web3(state = {}, action) {
     switch (action.type) {
         case web3Constants.BALANCEOF_REQUEST:
             return {
+                ...state,
                 loading: true
             };
         case web3Constants.BALANCEOF_SUCCESS:
             return {
+                ...state,
                 address: action.balance
             };
         case web3Constants.BALANCEOF_FAILURE:
@@ -18,11 +20,13 @@ export function users(state = {}, action) {
             };
         case web3Constants.OWNEROF_REQUEST:
             return {
+                ...state,
                 loading: true
             };
         case web3Constants.OWNEROF_SUCCESS:
             return {
-                address: action.ownerAddress
+                ...state,
+                address: action.address
             };
         case web3Constants.OWNEROF_FAILURE:
             return {
@@ -30,11 +34,13 @@ export function users(state = {}, action) {
             };
         case web3Constants.TOKENURI_REQUEST:
             return {
+                ...state,
                 loading: true
             };
         case web3Constants.TOKENURI_SUCCESS:
             return {
-                address: action.certId
+                ...state,
+                certificate: action.certificate
             };
         case web3Constants.TOKENURI_FAILURE:
             return {
@@ -42,10 +48,12 @@ export function users(state = {}, action) {
             };
         case web3Constants.MINT_REQUEST:
             return {
+                ...state,
                 loading: true
             };
         case web3Constants.MINT_SUCCESS:
             return {
+                ...state,
                 address: action.certId
             };
         case web3Constants.MINT_FAILURE:
@@ -53,6 +61,8 @@ export function users(state = {}, action) {
                 error: action.error
             };
         default:
-            return state
+            return {
+                ...state
+            }
     }
 }

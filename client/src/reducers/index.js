@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { users } from './users.reducer';
+import { web3 } from './web3.reducer';
 import { alert } from './alert.reducer';
 
 const rootReducer = combineReducers({
-  users,
+  web3,
   alert
 });
 
