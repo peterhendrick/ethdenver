@@ -14,6 +14,7 @@ class HomePage extends React.Component {
             submitted: false
         };
         this.send = this.send.bind(this);
+        this.mint = this.mint.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
     }
@@ -42,6 +43,10 @@ class HomePage extends React.Component {
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+    }
+
+    mint() {
+        this.props.dispatch(web3Actions.mint('0x41FF2c09C4fAE81267Bd4feA1814Bac711C19004', 10, 'peterKicksAss'));
     }
 
     send(event) {
@@ -89,6 +94,13 @@ class HomePage extends React.Component {
                         name="send"
                         onClick={this.send}
                     >Send</button>
+                    <div className="col">
+                        <button
+                            className="btn btn-outline-primary btn-block"
+                            name="mint"
+                            onClick={this.mint}
+                        >Mint</button>
+                    </div>
                 </div>
             </div>
 
