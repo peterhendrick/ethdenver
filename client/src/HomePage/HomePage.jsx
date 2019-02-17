@@ -49,7 +49,7 @@ class HomePage extends React.Component {
     }
 
     mint() {
-        this.props.dispatch(web3Actions.mint('0x41FF2c09C4fAE81267Bd4feA1814Bac711C19004', 10, 'peterKicksAss'));
+        this.props.dispatch(web3Actions.mint('0x41FF2c09C4fAE81267Bd4feA1814Bac711C19004', 20, 'peterKicksAss'));
     }
 
     lookUp() {
