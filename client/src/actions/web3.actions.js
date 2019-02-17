@@ -1,53 +1,85 @@
-const Web3 = require('web3')
-const { contractAddress, httpProvider, ABI } = require('./ethBackpackContractConfig')
+import { web3Constants } from '../constants';
+import { web3Service } from '../services';
+import { alertActions } from './';
 
-async function balanceOf(addressToCheck) {
-  try {
-    const web3 = new Web3(new Web3.providers.HttpProvider(httpProvider))
-    const contract = new web3.eth.Contract(
-      ABI,
-      contractAddress
-    )
+export const web3Actions = {
+    balanceOf,
+    ownerOf,
+    tokenURI
+};
 
-    const res = await contract.methods
-      .balanceOf(addressToCheck)
-      .call()
-  } catch (e) {
-    return 'Error in call to balanceOf ' + e
-  }
-  return res
+function balanceOf(address) {
+    return dispatch => {
+        dispatch(request(address));
+
+        web3Service.balanceOf(address)
+            .then((response) => {
+                dispatch(success(response));
+                dispatch(alertActions.success(`Success`));
+            }).catch(error => {
+                dispatch(failure(error.message.toString()));
+                dispatch(alertActions.error(error.message.toString()));
+            });
+    };
+
+    function request(address) { return { type: web3Constants.BALANCEOF_REQUEST, address } }
+    function success(address) { return { type: web3Constants.BALANCEOF_SUCCESS, address } }
+    function failure(message) { return { type: web3Constants.BALANCEOF_FAILURE, message } }
 }
 
-async function ownerOf(tokenID) {
-  try {
-    const web3 = new Web3(new Web3.providers.HttpProvider(httpProvider))
-    const contract = new web3.eth.Contract(
-      ABI,
-      contractAddress
-    )
+function ownerOf(tokenId) {
+    return dispatch => {
+        dispatch(request(tokenId));
 
-    const res = await contract.methods
-      .ownerOf(tokenID)
-      .call()
-  } catch (e) {
-    return 'Error in call to balanceOf ' + e
-  }
-  return res
+        web3Service.ownerOf(tokenId)
+            .then((response) => {
+                dispatch(success(response));
+                dispatch(alertActions.success(`Success`));
+            }).catch(error => {
+                dispatch(failure(error.message.toString()));
+                dispatch(alertActions.error(error.message.toString()));
+            });
+    };
+
+    function request(tokenId) { return { type: web3Constants.OWNEROF_REQUEST, tokenId } }
+    function success(tokenId) { return { type: web3Constants.OWNEROF_SUCCESS, tokenId } }
+    function failure(message) { return { type: web3Constants.OWNEROF_FAILURE, message } }
 }
 
-async function tokenURI(tokenID) {
-  try {
-    const web3 = new Web3(new Web3.providers.HttpProvider(httpProvider))
-    const contract = new web3.eth.Contract(
-      ABI,
-      contractAddress
-    )
+function tokenURI(tokenId) {
+    return dispatch => {
+        dispatch(request(tokenId));
 
-    const res = await contract.methods
-      .tokenURI(tokenID)
-      .call()
-  } catch (e) {
-    return 'Error in call to balanceOf ' + e
-  }
-  return res
+        web3Service.tokenURI(tokenId)
+            .then((response) => {
+                dispatch(success(response));
+                dispatch(alertActions.success(`Success`));
+            }).catch(error => {
+                dispatch(failure(error.message.toString()));
+                dispatch(alertActions.error(error.message.toString()));
+            });
+    };
+
+    function request(tokenId) { return { type: web3Constants.TOKENURI_REQUEST, tokenId } }
+    function success(tokenId) { return { type: web3Constants.TOKENURI_SUCCESS, tokenId } }
+    function failure(message) { return { type: web3Constants.TOKENURI_FAILURE, message } }
+}
+
+function mint(addrss, tokenId, tokenUri) {
+    return dispatch => {
+        dispatch(request(tokenId));
+
+        web3Service.mint(tokenId)
+            .then((response) => {
+                dispatch(success(response));
+                dispatch(alertActions.success(`Success`));
+            }).catch(error => {
+                dispatch(failure(error.message.toString()));
+                dispatch(alertActions.error(error.message.toString()));
+            });
+    };
+
+    function request(tokenId) { return { type: web3Constants.TOKENURI_REQUEST, tokenId } }
+    function success(tokenId) { return { type: web3Constants.TOKENURI_SUCCESS, tokenId } }
+    function failure(message) { return { type: web3Constants.TOKENURI_FAILURE, message } }
 }

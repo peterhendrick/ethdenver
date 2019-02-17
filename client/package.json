@@ -12,6 +12,7 @@
     "webpack": "webpack-dev-server --open"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.0.0",
     "config": "^3.0.1",
     "history": "^4.6.3",
     "lodash": "^4.17.11",

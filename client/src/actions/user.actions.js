@@ -7,8 +7,6 @@ export const userActions = {
     send
 };
 
-
-
 function send(address, cert) {
     return dispatch => {
         dispatch(request(address, cert));

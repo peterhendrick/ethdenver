@@ -1,9 +1,9 @@
 import React from 'react';
 // import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Web3 from 'react-web3';
+// import Web3 from 'react-web3';
 
-import { alertActions, userActions } from '../actions';
+import { alertActions, userActions, web3Actions } from '../actions';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -47,7 +47,8 @@ class HomePage extends React.Component {
     send(event) {
         event.preventDefault();
         this.setState({ submitted: true });
-        this.props.dispatch(userActions.send(this.state.address, this.state.certificate));
+        // this.props.dispatch(userActions.send(this.state.address, this.state.certificate));
+        this.props.dispatch(web3Actions.ownerOf(5));
     }
 
     render() {
