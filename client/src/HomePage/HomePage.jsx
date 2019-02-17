@@ -39,16 +39,16 @@ class HomePage extends React.Component {
         const { address, certificate, tokenId, submitted, tokenIDLookup, tokenReceiver, certMeta } = this.props.web3;
         return (
           <div>
-              <div className="d-flex justify-content-md-center">
+              <div align="center">
                   <img style={{ width: 300, height: 300 }} src={'https://www.ethdenver.com/wp-content/themes/understrap/img/bufficorn_magic_geometri1.jpg'} alt="boohoo" className="img-responsive" />
               </div>
-              <table>
+              <table width="100%" align="center">
                 <tr>
-                    <th>Mint</th>
-                    <th>LookUp</th>
+                    <th class="text-center"><h3>Mint</h3></th>
+                    <th class="text-center"><h3>LookUp</h3></th>
                 </tr>
                 <tr>
-                <td>
+                <td width="50%">
                     <div className="col-md-offset-2">
                         <div className={'form-group' + (submitted && !tokenReceiver ? ' has-error' : '')}>
                             <label htmlFor="tokenReceiver">Address To Mint For</label>
@@ -63,7 +63,7 @@ class HomePage extends React.Component {
                             }
                         </div>
                         <div className={'form-group'}>
-                            <label htmlFor="certMeta">Certificate Deets</label>
+                            <label htmlFor="certMeta">Certificate Metadata</label>
                             <input
                                 type="certMeta"
                                 className="form-control"
@@ -75,7 +75,7 @@ class HomePage extends React.Component {
                             }
                         </div>
                         <div className={'form-group' + (submitted && !certificate ? ' has-error' : '')}>
-                            <label htmlFor="tokenId">Certificate ID</label>
+                            <label htmlFor="tokenId">Token ID</label>
                             <input
                                 type="tokenId"
                                 className="form-control"
@@ -97,7 +97,7 @@ class HomePage extends React.Component {
                         </div>
                     </div>
                 </td>
-                <td>
+                <td width="50%">
                     <div className="col-md-offset-2">
                         <div className={'form-group' + (submitted && !address ? ' has-error' : '')}>
                             <label htmlFor="lookUpID">Token ID to LookUp</label>
