@@ -4,10 +4,9 @@
     "description": "An app to trade fake cryptocurrency based on actual prices",
     "main": "index.js",
     "scripts": {
-        "build": "tsc && npm run --prefix client build",
-        "dev": "ts-node ./src/index.ts",
-        "start": "node ./dist/index.js",
-        "heroku-postbuild": "tsc &&  npm install --prefix client && npm run --prefix client build"
+        "build": "npm run --prefix client build",
+        "start": "node ./server/index.js",
+        "heroku-postbuild": "npm install --prefix client && npm run --prefix client build"
     },
     "author": "ETH Backpack",
     "license": "MIT",
