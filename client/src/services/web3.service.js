@@ -1,11 +1,28 @@
-const Web3 = require('web3')
+import Web3 from 'web3';
+let web3js;
+
+if (typeof window.web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    web3js = new Web3(window.web3.currentProvider);
+    console.log('MetaMask Detected');
+} else {
+    console.log('No web3? You should consider trying MetaMask!')
+    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+    web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+}
+async function getAccounts() {
+    const account = await web3js.eth.getAccounts();
+    return account[0];
+}
+
+
 const {
     contractAddress,
     httpProvider,
     ABI
 } = require('./ethBackpackContractConfig');
-const web3 = new Web3(new Web3.providers.HttpProvider(httpProvider))
-const contract = new web3.eth.Contract(
+
+const contract = new web3js.eth.Contract(
     ABI,
     contractAddress
 )
@@ -37,12 +54,13 @@ function tokenURI(tokenID) {
         .call()
 };
 
-function mint(addressToSend, tokenId, tokenURI) {
-    return contract.methods
+async function mint(addressToSend, tokenId, tokenURI) {
+    let account = await getAccounts();
+    return await contract.methods
         .mintWithTokenURI(
             addressToSend,
             tokenId,
             tokenURI
         )
-        .call();
+        .send({from: account, gas: 5500000});
 }
