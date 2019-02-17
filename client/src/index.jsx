@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 // import { Web3Provider } from 'react-web3';
 import { store } from './helpers';
 import { App } from './App';
-const web3Util = require('./initWeb3.js')
-let web3js;
 window.addEventListener('load', function() {
 
     // web3Util.init();
