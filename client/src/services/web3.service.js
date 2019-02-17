@@ -44,5 +44,5 @@ function mint(addressToSend, tokenId, tokenURI) {
             tokenId,
             tokenURI
         )
-        .call()
+        .call();
 }

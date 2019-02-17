@@ -70,14 +70,21 @@ function mint(addrss, tokenId, tokenUri) {
     return dispatch => {
         dispatch(request(tokenId));
 
-        web3Service.mint(tokenId)
-            .then((response) => {
-                dispatch(success(response));
-                dispatch(alertActions.success(`Success`));
-            }).catch(error => {
-                dispatch(failure(error.message.toString()));
-                dispatch(alertActions.error(error.message.toString()));
-            });
+        try {
+            const response = web3Service.mint(addrss, tokenId, tokenUri);
+            dispatch(success(response));
+            dispatch(alertActions.success(`Success`));
+        } catch (error) {
+            dispatch(failure(error.message.toString()));
+            dispatch(alertActions.error(error.message.toString()));
+        }
+            // .then((response) => {
+            //     dispatch(success(response));
+            //     dispatch(alertActions.success(`Success`));
+            // }).catch(error => {
+            //     dispatch(failure(error.message.toString()));
+            //     dispatch(alertActions.error(error.message.toString()));
+            // });
     };
 
     function request(tokenId) { return { type: web3Constants.TOKENURI_REQUEST, tokenId } }
