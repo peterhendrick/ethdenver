@@ -1,7 +1,11 @@
 To install run
 
 ```bash
-npm install && npm run build
+npm install
+cd client
+npm install
+cd ..
+npm run build
 ```
 
 To Start in development
