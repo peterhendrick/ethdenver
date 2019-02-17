@@ -5,6 +5,7 @@ const Web3 = require('web3');
 async function receiveRequest(req, res) {
     try {
         const { address, certificate } = req.body;
+        const uniqueInt = new Date().getTime();
         //   const web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
         const web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/4d2d6e061aba4c268300596d28fc69a8"));
         // const provider = new Web3.providers.HttpProvider('https://rinkeby.infura.io')
@@ -42,6 +43,7 @@ async function receiveRequest(req, res) {
 
         //await test
         console.log('here', test);
+        res.status(200).json();
 
         // let test2 = contract.methods
         //   .mintWithTokenURI('0xbb59782ca73b8B0A0A9707F8724c2D1d841Dc789',11,'bloop')

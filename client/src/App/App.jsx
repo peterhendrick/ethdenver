@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
 import { HomePage } from '../HomePage';
+import { Web3Provider } from 'react-web3';
+
 
 class App extends React.Component {
     constructor(props) {
